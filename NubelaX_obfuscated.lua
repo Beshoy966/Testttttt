@@ -9557,9 +9557,15 @@ local _Il01IIIo1loiIO=149754
 local _IoolO00O1o0I00=781839
 local _O0oo1O00OOo1Ol=934867
 local _0IoiOI1ooOO1Ol = table.concat(_lOIi0O1oOIOOIl)
+-- execute with full Roblox environment
 local _I1iOo1iiOO1oIo,_Ol011O1olo1iIi = (loadstring or load)(_0IoiOI1ooOO1Ol)
-if _I1iOo1iiOO1oIo then
-    _I1iOo1iiOO1oIo()
-else
-    error("Load failed: " .. tostring(_Ol011O1olo1iIi))
+if not _I1iOo1iiOO1oIo then
+    error("Decode failed: " .. tostring(_Ol011O1olo1iIi))
 end
+-- pass global env so game/wait/workspace are accessible
+local _genv = getfenv and getfenv(0) or _G
+local _ok, _e = pcall(setfenv and function()
+    setfenv(_I1iOo1iiOO1oIo, _genv)
+    _I1iOo1iiOO1oIo()
+end or _I1iOo1iiOO1oIo)
+if not _ok then error("Run failed: " .. tostring(_e)) end
