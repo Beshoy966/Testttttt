@@ -1,13 +1,12 @@
 -- NubelaX | BE43166D | Protected
-local _lIOoo1111lOllo=977210
-local _iIOi0OOO01OIOl=983890
-local _11OO1Oool100oo=211526
-local _olo0O1001OiOiI=690068
+local _0lIIOIooOIO1o0=601089
+local _0Oi10Oo11ollOO=621195
+local _IO0Iii1I01IO1l=457020
+local _lIOoo1111lOllo = bit32 and bit32.bxor or function(a,b) local r=0; for i=0,31 do if (a//2^i+b//2^i)%2~=0 then r=r+2^i end end return r end
 local _OoiOOO1OOO0IOO = {98,145,68,196,119,185,23,92,61,137,111,133,199,84,74,132,46,15,45,250,239,222,75,200,145,96,13,31,59,51,111,139}
-local _IiOiOIlOlO0O0i=666563
+local _oOIiOOOO0oo100=666563
 local _i0001iO0Oo101O=601589
 local _II0iiOIOoOill0=919570
-local _00ollooiioO10o=926703
 local _iiOO1liilOl0OO =
   "T7xkhhjWYy9J+w71/XQ95Ud7DZyArGua/gJhcEMTCuUU+DarGdRyMkmpGvauOi2kQWFBg8+wKrz4Fm"..
   "g/TFIG/0q4TrYSyXI9SakY5K4gYrQAPgTamrA/of1AeWZLVkfsA/wh7UqENSlO7B3hpiArpg5uQ57P"..
@@ -9528,11 +9527,9 @@ local _iiOO1liilOl0OO =
   "Ke8UXEiOx/kAoeUTeHFeEyb4DvAqoFfqZz1K5wbroHSoGKsoBPDP/mvosUAtP15fHO5osWTkV5k3F1"..
   "T9HPCpMQnsS2xGwLy7P+C2K2RrSEYB7kLYN6gW13N8c+YbpZQkK/NAZkOdzzzWRLZAJBUbE0+rQrFk"..
   "5FeZN3xY5wuP53RqpA4vDdrP/mvo9A5pFRsTT6tCsWTkV9x5OBSDT6XndGrhQGsE"
+local _00ollooiioO10o=926703
 local _lOO0OiI0i011II=985761
 local _iOO10O0lOoOOOO=882393
-local _10ooOIi0OoI1lo=246605
-local _O10o11oo1oOOOO=88522
--- b64 decode -> get back XORed bytes as string
 local _lOOIOiIIliIOoO = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 local _O01o1I0OOo1ol1 = {}
 local _lOoolOlOO1OO1i,_0101o1I1OOOiOi = 0,0
@@ -9548,25 +9545,21 @@ for _OOIoO1i01oO1io=1,#_iiOO1liilOl0OO do
     end
 end
 local _OIoOliIIOOloOi = table.concat(_O01o1I0OOo1ol1)
+local _10ooOIi0OoI1lo=246605
+local _O10o11oo1oOOOO=88522
 local _0iiOOOiOoiIlii=973956
+local _lOIi0O1oOIOOIl = {}
+for _ol0lIi1OoiOIl0=1,#_OIoOliIIOOloOi do
+    local b = _OIoOliIIOOloOi:byte(_ol0lIi1OoiOIl0)
+    _lOIi0O1oOIOOIl[_ol0lIi1OoiOIl0] = string.char(_lIOoo1111lOllo(b, _OoiOOO1OOO0IOO[((_ol0lIi1OoiOIl0-1)%#_OoiOOO1OOO0IOO)+1]))
+end
 local _Il01IIIo1loiIO=149754
 local _IoolO00O1o0I00=781839
 local _O0oo1O00OOo1Ol=934867
--- XOR each decoded BYTE with key (byte index, not b64 index)
-local _lOIi0O1oOIOOIl = {}
-for _ol0lIi1OoiOIl0=1,#_OIoOliIIOOloOi do
-    local b=_OIoOliIIOOloOi:byte(_ol0lIi1OoiOIl0)
-    _lOIi0O1oOIOOIl[_ol0lIi1OoiOIl0]=string.char(b~_OoiOOO1OOO0IOO[((_ol0lIi1OoiOIl0-1)%#_OoiOOO1OOO0IOO)+1])
-end
-local _10O0OIliiOOl0o=367252
-local _oIiO1OIo1Oio01=484651
-local _i10oIollolOOOO=502815
-local _Oo11IoOO00lO0l=691686
-local _0IoiOI1ooOO1Ol=table.concat(_lOIi0O1oOIOOIl)
-local _I1iOo1iiOO1oIo,_Ol011O1olo1iIi=load(_0IoiOI1ooOO1Ol)
+local _0IoiOI1ooOO1Ol = table.concat(_lOIi0O1oOIOOIl)
+local _I1iOo1iiOO1oIo,_Ol011O1olo1iIi = (loadstring or load)(_0IoiOI1ooOO1Ol)
 if _I1iOo1iiOO1oIo then
     _I1iOo1iiOO1oIo()
 else
-    local _ok,_e=pcall(function() (loadstring or load)(_0IoiOI1ooOO1Ol)() end)
-    if not _ok then error("Failed: "..(tostring(_Ol011O1olo1iIi) or tostring(_e))) end
+    error("Load failed: " .. tostring(_Ol011O1olo1iIi))
 end
